@@ -6,9 +6,15 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    @RenderSection("HeadStyles", false)
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/libs/angular.min.js"></script>
+    <script src="~/Scripts/libs/angular-route.min.js"></script>
+    <script src="~/Scripts/libs/ui-bootstrap-tpls.min.js"></script>
+    <script src="~/Scripts/pages/machineSales.module.js"></script>
+    @RenderSection("HeadScripts", false)
 </head>
-<body>
+<body ng-app="machineSalesModule">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
