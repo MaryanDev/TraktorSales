@@ -1,0 +1,9 @@
+﻿body {
+}
+
+#machinesTable tbody tr td img{
+    max-width: 300px;
+    max-height: 150px;
+    width:100%;
+    height: 100%;
+}

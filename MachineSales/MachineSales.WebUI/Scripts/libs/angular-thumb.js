@@ -2,9 +2,7 @@
 
 
 angular
-
-
-    .module('appModule')
+    .module('machineSalesModule')
 
 
     // Angular File Upload module does not include this directive

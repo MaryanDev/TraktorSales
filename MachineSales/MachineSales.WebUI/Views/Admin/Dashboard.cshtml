@@ -1,10 +1,10 @@
-﻿
+﻿@model List<MachineSales.WebUI.Entities.Machine>
 @{
     ViewBag.Title = "Dashboard";
 }
 
 @section HeadStyles{
-
+    <link href="~/Content/dashboard.css" rel="stylesheet" />
 }
 
 @section HeadScripts{
@@ -12,5 +12,28 @@
     <script src="~/Scripts/libs/angular-thumb.js"></script>
     <script src="~/Scripts/pages/admin/admin.controller.js"></script>
 }
-<h2>Dashboard</h2>
-
+<div class="text-center row">
+    <h2>Техніка на продаж</h2>
+    <div class="col-md-4">
+        <table class="table table-bordered table-hover" id="machinesTable">
+            <thead class="container">
+                <tr class="row">
+                    <th class="col-md-8">Фото</th>
+                    <th class="col-md-4">Модель</th>
+                </tr>
+            </thead>
+            <tbody class="container">
+                @foreach (var machine in Model)
+                {
+                    <tr class="row">
+                        <td class="col-md-8"><img src="@machine.MainImage" /></td>
+                        <td class="col-md-4"><a href="#machines/@machine.Id">@machine.Model</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-8">
+        <ng-view></ng-view>
+    </div>
+</div>

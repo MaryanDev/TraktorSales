@@ -1,4 +1,5 @@
-﻿using MachineSales.WebUI.Repositories;
+﻿using MachineSales.WebUI.Entities;
+using MachineSales.WebUI.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,24 @@ namespace MachineSales.WebUI.Controllers
         // GET: Admin
         public ActionResult Dashboard()
         {
-            return View();
+            var machines = _repository.Get<Machine>();
+            return View(machines);
+        }
+
+        [HttpGet]
+        public JsonResult GetMachineInfo(int id)
+        {
+            var machineInfo = _repository.Get<Machine>(m => m.Id == id).Select(m => new
+            {
+                Id = m.Id,
+                Price = m.Price,
+                Description = m.Description,
+                Model = m.Model,
+                MainImage = m.MainImage,
+                Images = m.Images.Select(i => i.ImagePath)
+            });
+
+            return Json(machineInfo, JsonRequestBehavior.AllowGet);
         }
     }
 }
