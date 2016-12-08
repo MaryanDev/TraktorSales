@@ -13,16 +13,28 @@
             createMachine: createMachineAjax
         }
 
-        function getMachineDetailsAjax() {
+        function getMachineDetailsAjax(id) {
+            var promise = $http({
+                method: "GET",
+                url: "/Admin/GetMachineInfo",
+                params: { id: id }
+            });
 
+            return promise;
         }
 
         function deleteMachineAjax() {
 
         }
 
-        function updateMachineAjax() {
+        function updateMachineAjax(machine) {
+            var promise = $http({
+                method: "POST",
+                url: "/Admin/UpdateMachine",
+                data: { machineToUpdate: machine }
+            });
 
+            return promise;
         }
         
         function createMachineAjax() {

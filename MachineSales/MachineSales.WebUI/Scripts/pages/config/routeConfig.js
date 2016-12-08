@@ -8,7 +8,7 @@
                     controller: "adminController",
                     controllerAs: "ac"
                 })
-                .when("/machines/new", {
+                .when("/addmachine", {
                     templateUrl: "/Scripts/pages/admin/templates/addMachine.html",
                     controller: "adminController",
                     controllerAs: "ac"

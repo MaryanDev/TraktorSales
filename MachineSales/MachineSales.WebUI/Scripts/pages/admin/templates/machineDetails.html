@@ -1,6 +1,33 @@
 ﻿<div>
-    <h3>Інформація про машини</h3>
-    <form>
-
+    <h3>Інформація про машину</h3>
+    <form class="container">
+        <div class="form-group row">
+            <label class="col-md-4">
+                Модель
+            </label>
+            <div class="col-md-8">
+                <input type="text" ng-model="machine.Model" class="form-control input-lg" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-4">
+                Ціна
+            </label>
+            <div class="col-md-8">
+                <input type="number" ng-model="machine.Price" class="form-control  input-lg" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-4">
+                Опис
+            </label>
+            <div class="col-md-8">
+                <textarea type="text" ng-model="machine.Description" class="form-control input-lg description"></textarea>
+            </div>
+        </div>
+        <div class="form-group btn-group-lg row">
+            <button type="submit" class="btn btn-info btn-lg col-md-5 col-md-push-3" ng-click="updateMachine(machine)">Змінити</button>
+            <button class="btn btn-lg btn-danger col-md-3 col-md-push-4" ng-click="deleteMachine(machine)">Видалити</button>
+        </div>
     </form>
 </div>

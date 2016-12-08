@@ -204,6 +204,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Entities\DTOs\FullMachineInfoDto.cs" />
     <Compile Include="Entities\Image.cs">
       <DependentUpon>MachinesModel.tt</DependentUpon>
     </Compile>
