@@ -15,7 +15,7 @@ namespace MachineSales.WebUI.Controllers
             _repository = new EFRepository();
         }
         // GET: Content
-        public ActionResult Login()
+        public ActionResult Home()
         {
             return View();
         }

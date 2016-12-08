@@ -16,7 +16,7 @@ namespace MachineSales.WebUI.Controllers
             _repository = new EFRepository();
         }
         // GET: Admin
-        public ActionResult Index()
+        public ActionResult Dashboard()
         {
             return View();
         }

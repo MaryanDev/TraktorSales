@@ -134,6 +134,9 @@
     <Content Include="Scripts\libs\ui-bootstrap.js" />
     <Content Include="Scripts\libs\ui-bootstrap.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pages\admin\admin.controller.js" />
+    <Content Include="Scripts\pages\config\routeConfig.js" />
+    <Content Include="Scripts\pages\content\content.controller.js" />
     <Content Include="Scripts\pages\machineSales.module.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -184,6 +187,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Content\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -193,8 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Content\" />
+    <Folder Include="Infractructure\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
