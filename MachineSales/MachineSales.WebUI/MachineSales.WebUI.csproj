@@ -217,6 +217,7 @@
     <Compile Include="Infractructure\Authentification\Admin.cs" />
     <Compile Include="Infractructure\Authentification\AdminDbContext.cs" />
     <Compile Include="Infractructure\Authentification\AdminManager.cs" />
+    <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFRepository.cs" />
@@ -237,6 +238,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Content\Home.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -31,6 +31,7 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Вийти", "Logout", "Account")</li>
+                        <li>@Html.ActionLink("Змінити пароль", "ChangePassword", "Account")</li>
                     }
                 </ul>
             </div>

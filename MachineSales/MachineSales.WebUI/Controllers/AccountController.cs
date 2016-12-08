@@ -6,6 +6,7 @@ using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
@@ -60,6 +61,38 @@ namespace MachineSales.WebUI.Controllers
         {
             AuthManager.SignOut();
             return RedirectToAction("Login");
+        }
+
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordModel chngModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var NewUser = UserManager.Find(User.Identity.Name, chngModel.CurrentPassword);
+                if(NewUser == null)
+                {
+                    ModelState.AddModelError("", "Неправильний пароль.");
+                    return View(chngModel);
+                }
+                else
+                {
+                    NewUser.PasswordHash = UserManager.PasswordHasher.HashPassword(chngModel.NewPassword);
+                    var result = UserManager.Update(NewUser);
+                    if (!result.Succeeded)
+                    {
+                        AddErrorsFromResult(result);
+                        return View(chngModel);
+                    }
+                }
+
+            }
+            return RedirectToAction("Dashboard", "Admin");
         }
 
         private AdminManager UserManager
