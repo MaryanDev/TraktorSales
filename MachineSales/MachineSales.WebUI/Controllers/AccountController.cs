@@ -56,6 +56,12 @@ namespace MachineSales.WebUI.Controllers
             return View(loginModel);
         }
 
+        public ActionResult Logout()
+        {
+            AuthManager.SignOut();
+            return RedirectToAction("Login");
+        }
+
         private AdminManager UserManager
         {
             get
