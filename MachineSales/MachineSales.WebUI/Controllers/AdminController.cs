@@ -50,7 +50,8 @@ namespace MachineSales.WebUI.Controllers
                 Id = machineToUpdate.Id,
                 Model = machineToUpdate.Model,
                 Price = machineToUpdate.Price,
-                Description = machineToUpdate.Description
+                Description = machineToUpdate.Description,
+                MainImage = machineToUpdate.MainImage ?? ""
             });
             //var images = _repository.Get<Image>(i => i.MachineId == UpdatedMachine.Id);
             //foreach(var image in images)
@@ -58,10 +59,10 @@ namespace MachineSales.WebUI.Controllers
             //    _repository.Delete(image);
             //}
 
-            foreach(var newImage in machineToUpdate.Images)
-            {
-                _repository.Insert(new Image { ImagePath = newImage.ImagePath });
-            }
+            //foreach(var newImage in machineToUpdate.Images)
+            //{
+            //    _repository.Insert(new Image { ImagePath = newImage.ImagePath });
+            //}
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
@@ -75,7 +76,7 @@ namespace MachineSales.WebUI.Controllers
                 // file is uploaded
                 file.SaveAs(path);
 
-                _repository.Insert<Image>(new Entities.Image { ImagePath = Path.Combine("/Content/Images", pic) });
+                _repository.Insert<Image>(new Entities.Image { ImagePath = Path.Combine("/Content/Images", pic), MachineId = machineId });
                 // save the image path path to the database or you can send image 
                 // directly to database
                 // in-case if you want to store byte[] ie. for DB
@@ -112,8 +113,14 @@ namespace MachineSales.WebUI.Controllers
         public ActionResult DeleteMainImage(int machineId)
         {
             var machineToUpdate = _repository.GetSingle<Machine>(m => m.Id == machineId);
+            var mainImgPath = Server.MapPath(machineToUpdate.MainImage);
             machineToUpdate.MainImage = "";
             _repository.Update(machineToUpdate);
+
+            if (System.IO.File.Exists(mainImgPath))
+            {
+                System.IO.File.Delete(mainImgPath);
+            }
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
@@ -122,8 +129,13 @@ namespace MachineSales.WebUI.Controllers
         public ActionResult DeleteSecondaryImage(int imageId)
         {
             var imageToDelete = _repository.GetSingle<Image>(i => i.Id == imageId);
+            var secondaryImagePath = Server.MapPath(imageToDelete.ImagePath);
             _repository.Delete<Image>(imageToDelete);
 
+            if (System.IO.File.Exists(secondaryImagePath))
+            {
+                System.IO.File.Delete(secondaryImagePath);
+            }
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
     }

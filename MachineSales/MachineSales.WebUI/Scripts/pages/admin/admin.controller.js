@@ -20,10 +20,28 @@
                 adminAjaxService.getMachineDetails($scope.machineId)
                     .then(function (response) {
                         $scope.machine = response.data;
+                        $scope.mainPhotoUploader.onBeforeUploadItem = onBeforeUploadItem;
+                        $scope.photosUploader.onBeforeUploadItem = onBeforeUploadItem;
                     }, function (error) {
                         console.error("error loading machine info");
                     });
+                $scope.mainPhotoUploader.filters.push({
+                    'name': 'enforceMaxFileSize',
+                    'fn': function (item) {
+                        return item.size <= 10485760; // 10 MiB to bytes
+                    }
+                });
+                $scope.photosUploader.filters.push({
+                    'name': 'enforceMaxFileSize',
+                    'fn': function (item) {
+                        return item.size <= 10485760; // 10 MiB to bytes
+                    }
+                });
             }
+        }
+
+        function onBeforeUploadItem(item) {
+            item.formData.push({ machineId: $scope.machine.Id });
         }
 
         $scope.showUploader = function () {
@@ -35,11 +53,14 @@
             if (isUpdate) {
                 adminAjaxService.updateMachine(machine)
                 .then(function (response) {
-                    location.assign("/");
+                    $scope.mainPhotoUploader.uploadAll();
+                    $scope.photosUploader.uploadAll();
+                    //location.assign("/Admin/Dashboard");
                 }, function (error) {
                     console.error("error updating machine");
                 });
             }
+            
         }
 
         $scope.deleteMainImage = function (id) {
