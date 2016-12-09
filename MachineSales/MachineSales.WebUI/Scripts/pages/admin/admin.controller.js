@@ -21,7 +21,9 @@
                     .then(function (response) {
                         $scope.machine = response.data;
                         $scope.mainPhotoUploader.onBeforeUploadItem = onBeforeUploadItem;
+                        $scope.mainPhotoUploader.onCompleteAll = onComleteAll;
                         $scope.photosUploader.onBeforeUploadItem = onBeforeUploadItem;
+                        $scope.photosUploader.onCompleteAll = onComleteAll;
                     }, function (error) {
                         console.error("error loading machine info");
                     });
@@ -42,6 +44,9 @@
 
         function onBeforeUploadItem(item) {
             item.formData.push({ machineId: $scope.machine.Id });
+        }
+        function onComleteAll() {
+            location.assign("/Admin/Dashboard");
         }
 
         $scope.showUploader = function () {
