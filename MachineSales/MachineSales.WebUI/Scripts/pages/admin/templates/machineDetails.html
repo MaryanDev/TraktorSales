@@ -3,6 +3,89 @@
     <form class="container">
         <div class="form-group row">
             <label class="col-md-4">
+                Головне фото
+            </label>
+            <div class="col-md-8">
+                <label ng-if="machine.MainImage !== ''">Ви не можете завантажити основне фото оскільки машина може мати одне основне фото.Щб змінити його видаліть існуюче фото і завантажте нове.</label>
+                <div ng-hide="mainPhotoUploader.queue.length > 0 || machine.MainImage !== ''">
+                    <div nv-file-drop uploader="mainPhotoUploader" style="height:100px;background-color:lightgray; border:4px dotted gray" class="text-center" ng-click="showUploader()">
+                        <span class="text-info h3">Перетягніть сюди</span>
+                    </div>
+                    <input type="file" nv-file-select uploader="mainPhotoUploader" /><br />
+                </div>
+                <div ng-repeat="item in mainPhotoUploader.queue" class="row">
+                    <div class="col-md-10" style="height: 150px" ng-show="mainPhotoUploader.isHTML5 && mainPhotoUploader.queue.length !== 0" ng-thumb="{ file: item._file, height: 150, width: 250 }" ng-click="showUploader()">
+                    </div>
+                    <strong>{{item.file.name}}</strong>
+                    <button class="btn btn-danger btn-xs col-md-2" ng-click="item.remove()">
+                        <span class="glyphicon glyphicon-trash">
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" ng-if="machine.MainImage !== ''">
+            <label class="col-md-4">Існуюче головне фото</label>
+            <table>
+                <tr class="row">
+                    <td class="col-md-10"><img src="{{machine.MainImage}}"/></td>
+                    <td class="col-md-2"><button class="btn btn-xs btn-danger" ng-click="deleteMainImage(machine.Id)"><span class="glyphicon glyphicon-trash"></span></button></td>
+                </tr>
+            </table>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-4">
+                Додати інші фото
+            </label>
+            <div class="col-md-8">
+                <div nv-file-drop uploader="photosUploader" style="height:100px;background-color:lightgray; border:4px dotted gray" class="text-center">
+                    <span class="text-info h3">Перетягніть сюди</span>
+                </div><br />
+                <input type="file" nv-file-select uploader="photosUploader" /><br />
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ім'я</th>
+                            <th ng-show="photosUploader.isHTML5">Розмір</th>
+                            <!--<th>Status</th>-->
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in photosUploader.queue">
+                            <td>
+                                <strong>{{item.file.name}}</strong>
+                                <div style="height: 100px" ng-show="photosUploader.isHTML5" ng-thumb="{ file: item._file, height: 100, width: 200 }">
+                                </div>
+                                <!--<img width="200" height="100" ng-show="uploader.isHTML5" src="{{item._file.name}}" />-->
+                            </td>
+                            <td ng-show="photosUploader.isHTML5">
+                                {{item.file.size / 1000000}}Mb
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                    <span class="glyphicon glyphicon-trash">
+                                    </span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-4">Існуючі інші фото</label>
+            <table>
+                <tr ng-repeat="image in machine.Images" class="row">
+                    <td class="col-md-10"><img src="{{image.ImagePath}}" class="secondaryImage"/></td>
+                    <td class="col-md-2">
+                        <button class="btn btn-xs btn-danger" ng-click="deleteSecondaryImage(image.Id)"><span class="glyphicon glyphicon-trash"></span></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-4">
                 Модель
             </label>
             <div class="col-md-8">

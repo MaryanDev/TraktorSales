@@ -20,6 +20,7 @@ namespace MachineSales.WebUI.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
+            //UserManager.Create(new Admin { UserName = "Admin", Email = "m.maykher@mail.ru" }, "mar1995");
             return View();
         }
 

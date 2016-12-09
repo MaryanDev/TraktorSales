@@ -3,6 +3,7 @@ using MachineSales.WebUI.Entities.DTOs;
 using MachineSales.WebUI.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -28,14 +29,14 @@ namespace MachineSales.WebUI.Controllers
         [HttpGet]
         public JsonResult GetMachineInfo(int id)
         {
-            var machineInfo = _repository.Get<Machine>(m => m.Id == id).Select(m => new
+            var machineInfo = _repository.Get<Machine>(m => m.Id == id).Select(m => new FullMachineInfoDto
             {
                 Id = m.Id,
-                Price = m.Price,
                 Description = m.Description,
+                Price = m.Price,
                 Model = m.Model,
                 MainImage = m.MainImage,
-                Images = m.Images.Select(i => i.ImagePath)
+                Images = m.Images.Select(i => new Image { Id = i.Id, ImagePath = i.ImagePath}).ToList()
             }).FirstOrDefault();
 
             return Json(machineInfo, JsonRequestBehavior.AllowGet);
@@ -51,16 +52,78 @@ namespace MachineSales.WebUI.Controllers
                 Price = machineToUpdate.Price,
                 Description = machineToUpdate.Description
             });
-            var images = _repository.Get<Image>(i => i.MachineId == UpdatedMachine.Id);
-            foreach(var image in images)
-            {
-                _repository.Delete(image);
-            }
+            //var images = _repository.Get<Image>(i => i.MachineId == UpdatedMachine.Id);
+            //foreach(var image in images)
+            //{
+            //    _repository.Delete(image);
+            //}
 
             foreach(var newImage in machineToUpdate.Images)
             {
-                _repository.Insert(new Image { ImagePath = newImage });
+                _repository.Insert(new Image { ImagePath = newImage.ImagePath });
             }
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        [HttpPost]
+        public ActionResult ModifyImages(HttpPostedFileBase file, int machineId)
+        {
+            if (file != null)
+            {
+                string pic = Path.GetFileName(file.FileName);
+                string path = Path.Combine(Server.MapPath("/Content/Images"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+
+                _repository.Insert<Image>(new Entities.Image { ImagePath = Path.Combine("/Content/Images", pic) });
+                // save the image path path to the database or you can send image 
+                // directly to database
+                // in-case if you want to store byte[] ie. for DB
+                //using (MemoryStream ms = new MemoryStream())
+                //{
+                //    file.InputStream.CopyTo(ms);
+                //    byte[] array = ms.GetBuffer();
+                //}
+
+            }
+            // after successfully uploading redirect the user
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        [HttpPost]
+        public ActionResult ModifyMainImage(HttpPostedFileBase file, int machineId)
+        {
+            if (file != null)
+            {
+                string pic = Path.GetFileName(file.FileName);
+                string path = Path.Combine(Server.MapPath("/Content/Images"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+
+                var machineToUpdate = _repository.GetSingle<Machine>(m => m.Id == machineId);
+                machineToUpdate.MainImage = Path.Combine("/Content/Images", pic);
+                _repository.Update<Machine>(machineToUpdate);
+            }
+            // after successfully uploading redirect the user
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteMainImage(int machineId)
+        {
+            var machineToUpdate = _repository.GetSingle<Machine>(m => m.Id == machineId);
+            machineToUpdate.MainImage = "";
+            _repository.Update(machineToUpdate);
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteSecondaryImage(int imageId)
+        {
+            var imageToDelete = _repository.GetSingle<Image>(i => i.Id == imageId);
+            _repository.Delete<Image>(imageToDelete);
+
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
     }

@@ -26,3 +26,12 @@ form input, form textarea{
     background-color:gray;
     color:greenyellow;
 }
+
+#secondaryImageWrapper{
+    height: 100px;
+}
+
+.secondaryImage{
+    width: 100%;
+    max-height:250px;
+}

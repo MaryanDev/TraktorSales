@@ -12,6 +12,6 @@ namespace MachineSales.WebUI.Entities.DTOs
         public string Description { get; set; }
         public string MainImage { get; set; }
         public string Model { get; set; }
-        public List<string> Images { get; set; }
+        public List<Image> Images { get; set; }
     }
 }

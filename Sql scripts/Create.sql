@@ -8,7 +8,7 @@ create table Machines
 (
 	Id int not null primary key identity(1, 1),
 	Model nvarchar(100) not null,
-	MainImage nvarchar(1000) not null,
+	MainImage nvarchar(1000) null,
 	[Description] text not null,
 	Price numeric(18, 4) not null
 );

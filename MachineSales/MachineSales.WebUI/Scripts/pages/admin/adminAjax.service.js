@@ -10,7 +10,9 @@
             getMachineDetails: getMachineDetailsAjax,
             deleteMachine: deleteMachineAjax,
             updateMachine: updateMachineAjax,
-            createMachine: createMachineAjax
+            createMachine: createMachineAjax,
+            deleteMainImage: deleteMainImageAjax,
+            deleteSecondaryImage: deleteSecondaryImageAjax
         }
 
         function getMachineDetailsAjax(id) {
@@ -41,6 +43,25 @@
 
         }
 
+        function deleteMainImageAjax(id) {
+            var promise = $http({
+                method: "POST",
+                url: "/Admin/DeleteMainImage",
+                data: { machineId: id }
+            });
+
+            return promise;
+        }
+
+        function deleteSecondaryImageAjax(id) {
+            var promise = $http({
+                method: "POST",
+                url: "/Admin/DeleteSecondaryImage",
+                data: { imageId: id }
+            });
+
+            return promise;
+        }
         return service;
     }
 })(angular);
