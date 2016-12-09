@@ -20,3 +20,7 @@ insert into Images(Id, ImagePath, MachineId)
 		(7, '/Content/Images\2.4.jfif', 2),
 		(8, '/Content/Images\2.5.jfif', 2)
 set identity_insert Images off
+
+
+insert into AspNetUsers(Id, Hometown, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, PhoneNumberConfirmed, TwoFactorEnabled, LockoutEndDateUtc, LockoutEnabled, AccessFailedCount, UserName)
+	values('10fb244f-ffe7-4fcf-860e-77edb029787d', NULL, 'm.maykher@mail.ru', 0, 'AJWAE/VtYQK20PbOL1PdGSV39RjiQHE9MC781ou3CSbf06tCkKe5t2+wVN9odMoouQ==', '4ce0b04a-6fdf-4484-b1a0-6296c392c29f', NULL, 0, 0, NULL, 0, 0, 'Admin');
