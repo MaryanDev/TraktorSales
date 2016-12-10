@@ -39,8 +39,14 @@
             return promise;
         }
         
-        function createMachineAjax() {
+        function createMachineAjax(machine) {
+            var promise = $http({
+                method: "POST",
+                url: "/Admin/CreateMachine",
+                data: { machineToCreate: machine }
+            });
 
+            return promise;
         }
 
         function deleteMainImageAjax(id) {

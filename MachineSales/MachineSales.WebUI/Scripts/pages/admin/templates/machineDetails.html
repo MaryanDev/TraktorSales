@@ -1,13 +1,14 @@
 ﻿<div>
-    <h3>Інформація про машину</h3>
+    <h3 ng-if="mode=='edit/deleteMode'">Інформація про машину</h3>
+    <h3 ng-if="mode=='createMode'">Створення машини</h3>
     <form class="container">
         <div class="form-group row">
             <label class="col-md-4">
                 Головне фото
             </label>
             <div class="col-md-8">
-                <label ng-if="machine.MainImage !== ''">Ви не можете завантажити основне фото оскільки машина може мати одне основне фото.Щб змінити його видаліть існуюче фото і завантажте нове.</label>
-                <div ng-hide="mainPhotoUploader.queue.length > 0 || machine.MainImage !== ''">
+                <label ng-if="machine.MainImage !== '' && machine.MainImage">Ви не можете завантажити основне фото оскільки машина може мати одне основне фото.Щб змінити його видаліть існуюче фото і завантажте нове.</label>
+                <div ng-hide="((mainPhotoUploader.queue.length > 0 || machine.MainImage !== '') && machine.MainImage) || mainPhotoUploader.queue.length > 0">
                     <div nv-file-drop uploader="mainPhotoUploader" style="height:100px;background-color:lightgray; border:4px dotted gray" class="text-center" ng-click="showUploader()">
                         <span class="text-info h3">Перетягніть сюди</span>
                     </div>
@@ -24,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group row" ng-if="machine.MainImage !== ''">
+        <div class="form-group row" ng-if="machine.MainImage !== '' && mode == 'edit/deleteMode'">
             <label class="col-md-4">Існуюче головне фото</label>
             <table>
                 <tr class="row">
@@ -73,7 +74,7 @@
                 </table>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row" ng-if="mode == 'edit/deleteMode'">
             <label class="col-md-4">Існуючі інші фото</label>
             <table>
                 <tr ng-repeat="image in machine.Images" class="row">
@@ -108,9 +109,12 @@
                 <textarea type="text" ng-model="machine.Description" class="form-control input-lg description"></textarea>
             </div>
         </div>
-        <div class="form-group btn-group-lg row">
+        <div class="form-group btn-group-lg row" ng-if="mode == 'edit/deleteMode'">
             <button type="submit" class="btn btn-info btn-lg col-md-5 col-md-push-3" ng-click="updateMachine(machine, mainPhotoUploader.queue, photosUploader.queue)">Змінити</button>
             <button class="btn btn-lg btn-danger col-md-3 col-md-push-4" ng-click="deleteMachine(machine)">Видалити</button>
+        </div>
+        <div class="form-group row" ng-if="mode == 'createMode'">
+            <button type="submit" class="btn btn-lg btn-success col-md-6 col-md-push-3" ng-click="createMachine(machine)">Створити</button>
         </div>
     </form>
 </div>

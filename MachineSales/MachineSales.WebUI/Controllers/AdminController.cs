@@ -45,7 +45,7 @@ namespace MachineSales.WebUI.Controllers
         [HttpPost]
         public ActionResult UpdateMachine(FullMachineInfoDto machineToUpdate)
         {
-            var UpdatedMachine = _repository.Update<Machine>(new Entities.Machine
+            var updatedMachine = _repository.Update<Machine>(new Entities.Machine
             {
                 Id = machineToUpdate.Id,
                 Model = machineToUpdate.Model,
@@ -137,6 +137,20 @@ namespace MachineSales.WebUI.Controllers
                 System.IO.File.Delete(secondaryImagePath);
             }
             return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        [HttpPost]
+        public JsonResult CreateMachine(FullMachineInfoDto machineToCreate)
+        {
+            var createdMachine  = _repository.Insert<Machine>(new Machine
+            {
+                Model = machineToCreate.Model,
+                Description = machineToCreate.Description,
+                Price = machineToCreate.Price,
+                MainImage = ""
+            });
+
+            return Json(createdMachine.Id);
         }
     }
 }

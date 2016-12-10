@@ -31,7 +31,7 @@
                 </tr>
                 @foreach (var machine in Model)
                 {
-                    <tr class="row">
+                    <tr class="row" onclick="location.assign('#machines/' + '@machine.Id');">
                         <td class="col-md-8"><img src="@machine.MainImage" /></td>
                         <td class="col-md-4"><a href="#machines/@machine.Id">@machine.Model</a></td>
                     </tr>

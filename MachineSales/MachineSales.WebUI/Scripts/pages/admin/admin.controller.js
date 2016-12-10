@@ -3,9 +3,11 @@
         .module("machineSalesModule")
         .controller("adminController", adminController);
 
-    adminController.$inject = ["$scope", "$routeParams", "FileUploader", "adminAjaxService"];
+    adminController.$inject = ["$scope", "$routeParams", "FileUploader", "adminAjaxService", "mode"];
 
-    function adminController($scope, $routeParams, FileUploader, adminAjaxService) {
+    function adminController($scope, $routeParams, FileUploader, adminAjaxService, mode) {
+        $scope.mode = mode;
+
         $scope.machineId = $routeParams.id || null;
         $scope.machine = {};
 
@@ -21,9 +23,9 @@
                     .then(function (response) {
                         $scope.machine = response.data;
                         $scope.mainPhotoUploader.onBeforeUploadItem = onBeforeUploadItem;
-                        $scope.mainPhotoUploader.onCompleteAll = onComleteAll;
+                        
                         $scope.photosUploader.onBeforeUploadItem = onBeforeUploadItem;
-                        $scope.photosUploader.onCompleteAll = onComleteAll;
+                        
                     }, function (error) {
                         console.error("error loading machine info");
                     });
@@ -40,6 +42,8 @@
                     }
                 });
             }
+            $scope.mainPhotoUploader.onCompleteAll = onComleteAll;
+            $scope.photosUploader.onCompleteAll = onComleteAll;
         }
 
         function onBeforeUploadItem(item) {
@@ -65,7 +69,7 @@
                     console.error("error updating machine");
                 });
             }
-            
+
         }
 
         $scope.deleteMainImage = function (id) {
@@ -88,6 +92,22 @@
                         location.assign("/Admin/Dashboard");
                     }, function (error) {
                         console.error("error deleting main photo");
+                    });
+            }
+        }
+
+        $scope.createMachine = function (machine) {
+            var isCreating = confirm("Ви дійсно хочете створити нову машину?");
+            if (isCreating) {
+                adminAjaxService.createMachine(machine)
+                    .then(function (response) {
+                        $scope.machine.Id = response.data;
+                        $scope.mainPhotoUploader.onBeforeUploadItem = onBeforeUploadItem;
+                        $scope.photosUploader.onBeforeUploadItem = onBeforeUploadItem;
+                        $scope.mainPhotoUploader.uploadAll();
+                        $scope.photosUploader.uploadAll();
+                    }, function (error) {
+                        console.error("error creating machine");
                     });
             }
         }
