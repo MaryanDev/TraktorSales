@@ -1,5 +1,5 @@
-create database traktorsSalesDb
-go
+--create database traktorsSalesDb
+--go
 
 use traktorsSalesDb
 go
@@ -22,7 +22,8 @@ create table Images
 
 alter table Images 
 add constraint fk_images_to_machine
-foreign key (MachineId) references Machines(Id);
+foreign key (MachineId) references Machines(Id)
+on delete cascade;
 
 SET ANSI_NULLS ON
 GO

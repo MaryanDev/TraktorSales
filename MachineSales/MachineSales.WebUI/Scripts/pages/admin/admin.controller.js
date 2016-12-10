@@ -112,6 +112,20 @@
             }
         }
 
+        $scope.deleteMachine = function(machineId) {
+            var isDeleting = confirm("Ви дійсно хочете видалити цю машину?");
+            if (isDeleting) {
+                adminAjaxService.deleteMachine(machineId)
+                    .then(function(response) {
+                        location.assign("/Admin/Dashboard");
+                    }, function(error) {
+                        console.error("error deleting machine");
+                    });
+            }
+
+
+        }
+
         activate();
     };
 })(angular);

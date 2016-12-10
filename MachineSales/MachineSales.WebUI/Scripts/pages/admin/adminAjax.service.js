@@ -25,8 +25,14 @@
             return promise;
         }
 
-        function deleteMachineAjax() {
+        function deleteMachineAjax(machineId) {
+            var promise = $http({
+                method: "POST",
+                url: "/Admin/DeleteMachine",
+                data: { machineId: machineId }
+            });
 
+            return promise;
         }
 
         function updateMachineAjax(machine) {

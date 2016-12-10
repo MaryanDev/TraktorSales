@@ -36,7 +36,7 @@ namespace MachineSales.WebUI.Controllers
                 Price = m.Price,
                 Model = m.Model,
                 MainImage = m.MainImage,
-                Images = m.Images.Select(i => new Image { Id = i.Id, ImagePath = i.ImagePath}).ToList()
+                Images = m.Images.Select(i => new Image { Id = i.Id, ImagePath = i.ImagePath }).ToList()
             }).FirstOrDefault();
 
             return Json(machineInfo, JsonRequestBehavior.AllowGet);
@@ -142,7 +142,7 @@ namespace MachineSales.WebUI.Controllers
         [HttpPost]
         public JsonResult CreateMachine(FullMachineInfoDto machineToCreate)
         {
-            var createdMachine  = _repository.Insert<Machine>(new Machine
+            var createdMachine = _repository.Insert<Machine>(new Machine
             {
                 Model = machineToCreate.Model,
                 Description = machineToCreate.Description,
@@ -151,6 +151,39 @@ namespace MachineSales.WebUI.Controllers
             });
 
             return Json(createdMachine.Id);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteMachine(int machineId)
+        {
+            var machineToDelete = _repository.GetSingle<Machine>(m => m.Id == machineId);
+            if (machineToDelete != null)
+            {
+                var mainImageToDelete = Server.MapPath(machineToDelete.MainImage);
+                _repository.Delete(machineToDelete);
+                if (System.IO.File.Exists(mainImageToDelete))
+                {
+                    System.IO.File.Delete(mainImageToDelete);
+                }
+
+                var secondaryImagesToDelete =
+                    _repository.Get<Image>(i => i.MachineId == machineToDelete.Id)
+                        .Select(i => Server.MapPath(i.ImagePath))
+                        .ToList();
+
+                foreach (var image in secondaryImagesToDelete)
+                {
+                    if (System.IO.File.Exists(image))
+                    {
+                        System.IO.File.Delete(image);
+                    }
+                }
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
         }
     }
 }

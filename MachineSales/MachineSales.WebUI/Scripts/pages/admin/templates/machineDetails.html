@@ -111,7 +111,7 @@
         </div>
         <div class="form-group btn-group-lg row" ng-if="mode == 'edit/deleteMode'">
             <button type="submit" class="btn btn-info btn-lg col-md-5 col-md-push-3" ng-click="updateMachine(machine, mainPhotoUploader.queue, photosUploader.queue)">Змінити</button>
-            <button class="btn btn-lg btn-danger col-md-3 col-md-push-4" ng-click="deleteMachine(machine)">Видалити</button>
+            <button class="btn btn-lg btn-danger col-md-3 col-md-push-4" ng-click="deleteMachine(machine.Id)">Видалити</button>
         </div>
         <div class="form-group row" ng-if="mode == 'createMode'">
             <button type="submit" class="btn btn-lg btn-success col-md-6 col-md-push-3" ng-click="createMachine(machine)">Створити</button>
