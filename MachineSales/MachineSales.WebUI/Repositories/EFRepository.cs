@@ -16,7 +16,9 @@ namespace MachineSales.WebUI.Repositories
         }
         public void Delete<TEntity>(TEntity entity) where TEntity : class
         {
-            context.Entry(entity).State = EntityState.Deleted;
+            //context.Entry(entity).State = EntityState.Deleted;
+            context.Set<TEntity>().Attach(entity);
+            context.Set<TEntity>().Remove(entity);
             context.SaveChanges();
         }
 

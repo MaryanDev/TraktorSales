@@ -160,23 +160,25 @@ namespace MachineSales.WebUI.Controllers
             if (machineToDelete != null)
             {
                 var mainImageToDelete = Server.MapPath(machineToDelete.MainImage);
-                _repository.Delete(machineToDelete);
-                if (System.IO.File.Exists(mainImageToDelete))
-                {
-                    System.IO.File.Delete(mainImageToDelete);
-                }
-
                 var secondaryImagesToDelete =
-                    _repository.Get<Image>(i => i.MachineId == machineToDelete.Id)
-                        .Select(i => Server.MapPath(i.ImagePath))
-                        .ToList();
+                    _repository.Get<Image>(i => i.MachineId == machineToDelete.Id);
 
-                foreach (var image in secondaryImagesToDelete)
+                foreach (var img in secondaryImagesToDelete)
+                {
+                    _repository.Delete(img);
+                }
+                var secondaryImagesPathToDelete = secondaryImagesToDelete.Select(i => Server.MapPath(i.ImagePath));
+                foreach (var image in secondaryImagesPathToDelete)
                 {
                     if (System.IO.File.Exists(image))
                     {
                         System.IO.File.Delete(image);
                     }
+                }
+                _repository.Delete(machineToDelete);
+                if (System.IO.File.Exists(mainImageToDelete))
+                {
+                    System.IO.File.Delete(mainImageToDelete);
                 }
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
