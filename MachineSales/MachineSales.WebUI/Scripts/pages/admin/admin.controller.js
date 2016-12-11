@@ -23,9 +23,9 @@
                     .then(function (response) {
                         $scope.machine = response.data;
                         $scope.mainPhotoUploader.onBeforeUploadItem = onBeforeUploadItem;
-                        
+
                         $scope.photosUploader.onBeforeUploadItem = onBeforeUploadItem;
-                        
+
                     }, function (error) {
                         console.error("error loading machine info");
                     });
@@ -50,7 +50,9 @@
             item.formData.push({ machineId: $scope.machine.Id });
         }
         function onComleteAll() {
-            location.assign("/Admin/Dashboard");
+            if (!$scope.mainPhotoUploader.isUploading && !$scope.photosUploader.isUploading) {
+                location.assign("/Admin/Dashboard");
+            }
         }
 
         $scope.showUploader = function () {
@@ -62,8 +64,13 @@
             if (isUpdate) {
                 adminAjaxService.updateMachine(machine)
                 .then(function (response) {
-                    $scope.mainPhotoUploader.uploadAll();
-                    $scope.photosUploader.uploadAll();
+                    if ($scope.mainPhotoUploader.queue.length === 0 && $scope.photosUploader.queue.length === 0) {
+                        location.assign("/Admin/Dashboard");
+                    } else {
+                        $scope.mainPhotoUploader.uploadAll();
+                        $scope.photosUploader.uploadAll();
+                    }
+
                     //location.assign("/Admin/Dashboard");
                 }, function (error) {
                     console.error("error updating machine");
@@ -101,24 +108,29 @@
             if (isCreating) {
                 adminAjaxService.createMachine(machine)
                     .then(function (response) {
-                        $scope.machine.Id = response.data;
-                        $scope.mainPhotoUploader.onBeforeUploadItem = onBeforeUploadItem;
-                        $scope.photosUploader.onBeforeUploadItem = onBeforeUploadItem;
-                        $scope.mainPhotoUploader.uploadAll();
-                        $scope.photosUploader.uploadAll();
+                        if ($scope.mainPhotoUploader.queue.length === 0 && $scope.photosUploader.queue.length === 0) {
+                            location.assign("/Admin/Dashboard");
+                        } else {
+                            $scope.machine.Id = response.data;
+                            $scope.mainPhotoUploader.onBeforeUploadItem = onBeforeUploadItem;
+                            $scope.photosUploader.onBeforeUploadItem = onBeforeUploadItem;
+                            $scope.mainPhotoUploader.uploadAll();
+                            $scope.photosUploader.uploadAll();
+                        }
+
                     }, function (error) {
                         console.error("error creating machine");
                     });
             }
         }
 
-        $scope.deleteMachine = function(machineId) {
+        $scope.deleteMachine = function (machineId) {
             var isDeleting = confirm("Ви дійсно хочете видалити цю машину?");
             if (isDeleting) {
                 adminAjaxService.deleteMachine(machineId)
-                    .then(function(response) {
+                    .then(function (response) {
                         location.assign("/Admin/Dashboard");
-                    }, function(error) {
+                    }, function (error) {
                         console.error("error deleting machine");
                     });
             }
