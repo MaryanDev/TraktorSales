@@ -27,6 +27,9 @@ form input, form textarea{
     color:greenyellow;
 }
 
+#dataRow :hover {
+    cursor: pointer;
+}
 #secondaryImageWrapper{
     height: 100px;
 }

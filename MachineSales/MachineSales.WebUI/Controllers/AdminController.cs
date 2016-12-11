@@ -20,9 +20,14 @@ namespace MachineSales.WebUI.Controllers
             _repository = new EFRepository();
         }
         // GET: Admin
-        public ActionResult Dashboard()
+        public ActionResult Dashboard(int page = 1)
         {
-            var machines = _repository.Get<Machine>();
+            var machines = _repository.Get<Machine>()
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList(); 
+            var count = GetCountOfPages(_repository.Get<Machine>().Count, pageSize);
+            ViewBag.allPages = count;
             return View(machines);
         }
 
@@ -53,16 +58,6 @@ namespace MachineSales.WebUI.Controllers
                 Description = machineToUpdate.Description,
                 MainImage = machineToUpdate.MainImage ?? ""
             });
-            //var images = _repository.Get<Image>(i => i.MachineId == UpdatedMachine.Id);
-            //foreach(var image in images)
-            //{
-            //    _repository.Delete(image);
-            //}
-
-            //foreach(var newImage in machineToUpdate.Images)
-            //{
-            //    _repository.Insert(new Image { ImagePath = newImage.ImagePath });
-            //}
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
@@ -77,15 +72,6 @@ namespace MachineSales.WebUI.Controllers
                 file.SaveAs(path);
 
                 _repository.Insert<Image>(new Entities.Image { ImagePath = Path.Combine("/Content/Images", pic), MachineId = machineId });
-                // save the image path path to the database or you can send image 
-                // directly to database
-                // in-case if you want to store byte[] ie. for DB
-                //using (MemoryStream ms = new MemoryStream())
-                //{
-                //    file.InputStream.CopyTo(ms);
-                //    byte[] array = ms.GetBuffer();
-                //}
-
             }
             // after successfully uploading redirect the user
             return new HttpStatusCodeResult(HttpStatusCode.OK);
@@ -117,10 +103,7 @@ namespace MachineSales.WebUI.Controllers
             machineToUpdate.MainImage = "";
             _repository.Update(machineToUpdate);
 
-            if (System.IO.File.Exists(mainImgPath))
-            {
-                System.IO.File.Delete(mainImgPath);
-            }
+            DeleteImage(mainImgPath);
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
@@ -132,10 +115,7 @@ namespace MachineSales.WebUI.Controllers
             var secondaryImagePath = Server.MapPath(imageToDelete.ImagePath);
             _repository.Delete<Image>(imageToDelete);
 
-            if (System.IO.File.Exists(secondaryImagePath))
-            {
-                System.IO.File.Delete(secondaryImagePath);
-            }
+            DeleteImage(secondaryImagePath);
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
@@ -170,21 +150,31 @@ namespace MachineSales.WebUI.Controllers
                 var secondaryImagesPathToDelete = secondaryImagesToDelete.Select(i => Server.MapPath(i.ImagePath));
                 foreach (var image in secondaryImagesPathToDelete)
                 {
-                    if (System.IO.File.Exists(image))
-                    {
-                        System.IO.File.Delete(image);
-                    }
+                    DeleteImage(image);
                 }
                 _repository.Delete(machineToDelete);
-                if (System.IO.File.Exists(mainImageToDelete))
-                {
-                    System.IO.File.Delete(mainImageToDelete);
-                }
+                DeleteImage(mainImageToDelete);
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
             else
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+        }
+
+        protected int pageSize = 5;
+        protected int GetCountOfPages(int allPages, int size)
+        {
+            var pages = allPages / size;
+            var count = allPages % size == 0 ? pages : ++pages;
+            return count;
+        }
+
+        private void DeleteImage(string path)
+        {
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
             }
         }
     }
