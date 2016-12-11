@@ -9,7 +9,7 @@
             <div class="col-md-8">
                 <label ng-if="machine.MainImage !== '' && machine.MainImage">Ви не можете завантажити основне фото оскільки машина може мати одне основне фото.Щб змінити його видаліть існуюче фото і завантажте нове.</label>
                 <div ng-hide="((mainPhotoUploader.queue.length > 0 || machine.MainImage !== '') && machine.MainImage) || mainPhotoUploader.queue.length > 0">
-                    <div nv-file-drop uploader="mainPhotoUploader" style="height:100px;background-color:lightgray; border:4px dotted gray" class="text-center" ng-click="showUploader()">
+                    <div nv-file-drop uploader="mainPhotoUploader" style="height:100px;background-color:lightgray; border:4px dotted gray" class="text-center">
                         <span class="text-info h3">Перетягніть сюди</span>
                     </div>
                     <input type="file" nv-file-select uploader="mainPhotoUploader" /><br />
@@ -29,7 +29,7 @@
             <label class="col-md-4">Існуюче головне фото</label>
             <table>
                 <tr class="row">
-                    <td class="col-md-10"><img src="{{machine.MainImage}}"/></td>
+                    <td class="col-md-10"><img src="{{machine.MainImage}}" class="mainImage img-responsive"/></td>
                     <td class="col-md-2"><button class="btn btn-xs btn-danger" ng-click="deleteMainImage(machine.Id)"><span class="glyphicon glyphicon-trash"></span></button></td>
                 </tr>
             </table>

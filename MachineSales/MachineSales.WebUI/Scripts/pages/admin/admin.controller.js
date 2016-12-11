@@ -55,10 +55,6 @@
             }
         }
 
-        $scope.showUploader = function () {
-            console.log($scope.mainPhotoUploader.queue[0]._file);
-        }
-
         $scope.updateMachine = function (machine) {
             var isUpdate = confirm("Ви дійсно хочете змінити дану машину?");
             if (isUpdate) {
@@ -70,8 +66,6 @@
                         $scope.mainPhotoUploader.uploadAll();
                         $scope.photosUploader.uploadAll();
                     }
-
-                    //location.assign("/Admin/Dashboard");
                 }, function (error) {
                     console.error("error updating machine");
                 });
@@ -134,8 +128,6 @@
                         console.error("error deleting machine");
                     });
             }
-
-
         }
 
         activate();
