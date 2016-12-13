@@ -189,7 +189,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\admin\admin.controller.js" />
     <Content Include="Scripts\pages\admin\adminAjax.service.js" />
-    <Content Include="Scripts\pages\admin\templates\addMachine.html" />
     <Content Include="Scripts\pages\admin\templates\machineDetails.html" />
     <Content Include="Scripts\pages\config\routeConfig.js" />
     <Content Include="Scripts\pages\content\content.controller.js" />
