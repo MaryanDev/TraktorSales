@@ -41,15 +41,20 @@
                     <a class="logo" href="#page-top">SPECBUDBOGDAN</a>
                 </div>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li> @Html.ActionLink("Вийти", "Logout", "Account") </li>
+                        <li> @Html.ActionLink("Змінити пароль", "ChangePassword", "Account") </li>
+                        <li> @Html.ActionLink("Адмін-панель", "Dashboard", "Admin") </li>
+                    }
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/Content/Sales">Купити спецтехніку</a>
+                        <a href="@Url.Action("Sales", "Content")">Купити спецтехніку</a>
                     </li>
                     <li class="page-scroll">
                         <a class="glyphicon glyphicon-earphone"></a>
