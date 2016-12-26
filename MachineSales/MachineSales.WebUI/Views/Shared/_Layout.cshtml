@@ -1,11 +1,13 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>SBB-Оренда та продаж спецтехніки</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/styles.css" rel="stylesheet" type="text/css" />
     @RenderSection("HeadStyles", false)
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/libs/angular.min.js"></script>
@@ -14,40 +16,130 @@
     <script src="~/Scripts/libs/angular.file-upload.js"></script>
     <script src="~/Scripts/pages/machineSales.module.js"></script>
     @RenderSection("HeadScripts", false)
+
+    <link rel="stylesheet" type="text/css" href="~/Content/slick.css" />
+    <!--     Add the new slick-theme.css if you want the default styling-->
+    <link rel="stylesheet" type="text/css" href="~/Content/slick-theme.css" />
+    <!-- Custom Fonts -->
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Poller+One" rel="stylesheet" type="text/css">
 </head>
-<body ng-app="machineSalesModule">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+<body ng-app="machineSalesModule" id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <div id="logo">
+                    <a class="navbar-brand logo logo-main" href="/">SBB </a>
+                    <a class="logo" href="#page-top">SPECBUDBOGDAN</a>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (Request.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Вийти", "Logout", "Account")</li>
-                        <li>@Html.ActionLink("Змінити пароль", "ChangePassword", "Account")</li>
-                        <li>@Html.ActionLink("Адмін-панель", "Dashboard", "Admin")</li>
-                    }
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/Content/Sales">Купити спецтехніку</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a class="glyphicon glyphicon-earphone"></a>
+                    </li>
+                    <li class="page-scroll phone">
+                        <a>067 679 44 54</a>
+                        <a>096 622 22 92</a>
+                    </li>
                 </ul>
             </div>
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    @RenderBody()
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Адреса:</h3>
+                        <p>
+                            с. Бібрка
+                            <br>вул 33в
+                        </p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Ми в соціальних мережах</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Контакти:</h3>
+                        <p>067 679 44 54</p>
+                        <p>096 622 22 92</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Your Website @DateTime.Now.Year
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXHTf3uy7g7hehKds_IHhT4szn4N-hFBk&callback=initMap"></script>
+    <!-- jQuery -->
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!-- Bootstrap -->
     <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="~/Scripts/tractor.js"></script>
+    <script type="text/javascript" src="~/Scripts/slick.min.js"></script>
+
+
 </body>
+
 </html>

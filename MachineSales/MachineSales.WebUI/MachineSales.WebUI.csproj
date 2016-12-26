@@ -152,7 +152,11 @@
     <Content Include="Content\Images\2.3.jfif" />
     <Content Include="Content\Images\2.4.jfif" />
     <Content Include="Content\Images\2.5.jfif" />
+    <Content Include="Content\Images\tractor1.png" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\slick-theme.css" />
+    <Content Include="Content\slick.css" />
+    <Content Include="Content\styles.css" />
     <Content Include="Entities\MachinesModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MachinesModel.edmx</DependentUpon>
@@ -193,6 +197,9 @@
     <Content Include="Scripts\pages\config\routeConfig.js" />
     <Content Include="Scripts\pages\content\content.controller.js" />
     <Content Include="Scripts\pages\machineSales.module.js" />
+    <Content Include="Scripts\slick.min.js" />
+    <Content Include="Scripts\tractor.js" />
+    <Content Include="tractor1.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -255,6 +262,7 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Content\Sales.cshtml" />
     <Content Include="Views\Content\MachineDetails.cshtml" />
+    <Content Include="Views\Shared\Machine.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -264,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\font-awesome\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

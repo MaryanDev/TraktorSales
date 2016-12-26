@@ -5,6 +5,13 @@
 
 <h2>Sales</h2>
 
+@foreach (var machine in @Model)
+{
+    <div class="col-xs-12 col-sm-6 col-md-4">
+        @Html.Partial("Machine", machine)
+    </div>
+}
+
 <div class="text-center">
     <ul class="pagination pagination-sm">
         @for (var i = 0; i < ViewBag.allPages; i++)

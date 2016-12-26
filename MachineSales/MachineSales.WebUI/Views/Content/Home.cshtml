@@ -10,5 +10,93 @@
 @section HeadScripts{
     <script src="~/Scripts/pages/content/content.controller.js"></script>
 }
-<h2>Home</h2>
+    <!-- Header -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-text">
+                    <span class="name">Оренда та продаж спецтехніки</span>
+                    <hr class="star-light">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+                <img class="img-responsive" src="Images/tractor1.png" alt="tractors">
+                <p>Наша фірма понад 15 років    на ринку займається поставкою спецтехніки  і запчастин з Європи та Англії. Ми привозимо, розмитнюємо та надаємо в оренду техніку різного призначення . В нас є мініекскаватори, телескопічні навантажувачі, екскаватори- навантажувачі, повноповоротні екскпватори, самоскиди, катки та багато іншої техніки.Ми також гарантуємо за технічний стан та якість нашої техніки.Наші фахівці прокнсультують та допоможуть зробити правильний вибір щодо призначення техніки до відповідності чи складності об'єкту.Запрошуємо до співпраці!!!</p>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<!-- Map Section -->
+<section id="g-map">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Ми на карті</h2>
+                <hr class="star-primary">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="map"></div>
+                <script>
+                          function initMap() {
+                            var uluru = {lat: -25.363, lng: 131.044};
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                              zoom: 4,
+                              center: uluru,
+                              scrollwheel:  false
+                            });
+                            var marker = new google.maps.Marker({
+                              position: uluru,
+                              map: map
+                            });
+                          }
+                </script>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Contact Section -->
+<!--     <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Зв'яжіться з нами</h2>
+                    <hr class="star-primary">
+                        <div>067 679 44 54</div>
+                        <div>096 622 22 92</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+
+                </div>
+            </div>
+        </div>
+    </section>
+ -->
+<!--    <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="intro-text">
+                <hr class="star-light">
+            </div>
+        </div>
+    </div>
+       <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+                    <h2>Зв'яжіться з нами</h2>
+                    <div>067 679 44 54</div>
+                    <div>096 622 22 92</div>
+        </div>
+
+    </div>
+</div> -->
 
