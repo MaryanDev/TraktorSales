@@ -12,12 +12,15 @@ using System.Web.Mvc;
 namespace MachineSales.WebUI.Controllers
 {
     [Authorize]
+    [RoutePrefix("admin")]
+    [Route("{action=Dashboard}")]
     public class AdminController : BaseController
     {
         public AdminController() : base()
         {
         }
         // GET: Admin
+        
         public ActionResult Dashboard(int page = 1)
         {
             var machines = _repository.Get<Machine>()
