@@ -45,3 +45,18 @@ form input, form textarea{
     width: 100%;
     max-height:300px;
 }
+
+.deleteConfirm {
+    background-color: red;
+    color: white;
+}
+
+.updateConfirm {
+    background-color: lightblue;
+    color: white;
+}
+
+.createConfirm {
+    background-color: lightgreen;
+    color: white;
+}
