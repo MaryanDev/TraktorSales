@@ -1,15 +1,14 @@
-﻿<a href="/Content/MachineDetails/@Model.Id" class="machine-item-link">
+﻿@model MachineSales.WebUI.Entities.Machine
+<a href="@Url.Action("MachineDetails", "Content", new { id = Model.Id })" class="machine-item-link">
     <div class="machines-wrapper">
         <div class="machine-item">
-            <div style="background-image: url('@Url.Content(@Model.MainImage)')" class="machine-image">
-                <div class="machine-cost">$@string.Format("{0:0.#####}", @Model.Price)</div>
+            <div style="background-image: url('@Model.MainImage')" class="machine-image">
+                <div class="machine-cost">$@string.Format("{0:0.#####}", Model.Price)</div>
                 <div class="machine-gradient"></div>
             </div>
             <div class="machine-body">
-
                 <div class="machine-name">@Model.Model</div>
-                <div class="machine-about">@Model.Description</div>
-
+                @*<div class="machine-about">@Model.Description</div>*@
             </div>
         </div>
     </div>
