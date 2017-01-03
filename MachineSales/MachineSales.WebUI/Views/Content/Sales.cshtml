@@ -2,39 +2,58 @@
 @{
     ViewBag.Title = "Sales";
 }
+
+@*<h2>Sales</h2>
+
+@foreach (var machine in @Model)
+{
+    <div class="col-xs-12 col-sm-6 col-md-4">
+        @Html.Partial("Machine", machine)
+    </div>
+}
+
+<div class="text-center">
+    <ul class="pagination pagination-sm">
+        @for (var i = 0; i < ViewBag.allPages; i++)
+        {
+            <li><a href="@Url.Action("Sales", "Content", new { page = i + 1})">@(i + 1)</a></li>
+        }
+    </ul>
+</div>*@
+
 <section id="sales">
     <div class="container">
-            @*<div class="well well-sm">
-                    <strong>Category Title</strong>
-                    <div class="btn-group">
-                        <a href="#" id="list" class="btn btn-default btn-sm">
-                            <span class="glyphicon glyphicon-th-list">
-                            </span>List
-                        </a> <a href="#" id="grid" class="btn btn-default btn-sm">
-                            <span class="glyphicon glyphicon-th"></span>Grid
-                        </a>
-                    </div>
-                </div>*@
-
-            <div class="row">
-                <div class="row list-group">
-
-                    @foreach (var machine in @Model)
-            {
-                        <div class="col-xs-8 col-sm-8 col-md-4 col-lg-4">
-                            @Html.Partial("Machine", machine)
-                        </div>
-                    }
+        @*<div class="well well-sm">
+                <strong>Category Title</strong>
+                <div class="btn-group">
+                    <a href="#" id="list" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-th-list">
+                        </span>List
+                    </a> <a href="#" id="grid" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-th"></span>Grid
+                    </a>
                 </div>
-            </div>
+            </div>*@
 
-            <div class="text-center">
-                <ul class="pagination pagination-sm">
-                    @for (var i = 0; i < ViewBag.allPages; i++)
-                    {
-                        <li><a href="@Url.Action("Sales", "Content", new { page = i + 1})">@(i + 1)</a></li>
-                    }
-                </ul>
+        <div class="row">
+            <div class="row list-group">
+
+                @foreach (var machine in @Model)
+                {
+                    <div class="col-xs-10 col-sm-10 col-md-4 col-lg-4">
+                        @Html.Partial("Machine", machine)
+                    </div>
+                }
             </div>
         </div>
+
+        <div class="text-center">
+            <ul class="pagination pagination-sm">
+                @for (var i = 0; i < ViewBag.allPages; i++)
+                {
+                    <li><a href="@Url.Action("Sales", "Content", new { page = i + 1})">@(i + 1)</a></li>
+                }
+            </ul>
+        </div>
+    </div>
 </section>
