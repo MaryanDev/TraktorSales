@@ -1,17 +1,6 @@
 (function($) {
-    //google map section
-                      function initMap() {
-                        var uluru = {lat: -25.363, lng: 131.044};
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                          zoom: 4,
-                          center: uluru,
-                          scrollwheel:  false     
-                        });
-                        var marker = new google.maps.Marker({
-                          position: uluru,
-                          map: map
-                        });
-                      }
+
+
 
     // jQuery for page scrolling feature - requires jQuery Easing plugin
     $('.page-scroll a').bind('click', function(event) {
@@ -21,6 +10,8 @@
         }, 1250, 'easeInOutExpo');
         event.preventDefault();
     });
+
+
 
     // Highlight the top nav as scrolling occurs
     // $('body').scrollspy({
@@ -52,28 +43,30 @@
         });
 
 
-
-
     });
 
+    //$('.slider-for').slick({
+    //    slidesToShow: 1,
+    //    slidesToScroll: 1,
+    //    arrows: true,
+    //    fade: true,
+    //    asNavFor: '.slider-nav'
+    //});
+    //$('.slider-nav').slick({
+    //    slidesToShow: 3,
+    //    slidesToScroll: 1,
+    //    asNavFor: '.slider-for',
+    //    dots: false,
+    //    centerMode: true,
+    //    focusOnSelect: true
+    //});
 
-//slick section
-    // $('.slider-for').slick({
-    //   slidesToShow: 1,
-    //   slidesToScroll: 1,
-    //   arrows: false,
-    //   fade: true,
-    //   asNavFor: '.slider-nav'
-    // });
 
-    // $('.slider-nav').slick({
-    //   slidesToShow: 3,
-    //   slidesToScroll: 1,
-    //   asNavFor: '.slider-for',
-    //   dots: true,
-    //   centerMode: true,
-    //   focusOnSelect: true
-    // });
+
 
 
 })(jQuery); // End of use strict
+
+$('#list').click(function (event) { event.preventDefault(); $('#products .item').addClass('list-group-item'); });
+$('#grid').click(function (event) { event.preventDefault(); $('#products .item').removeClass('list-group-item'); $('#products .item').addClass('grid-group-item'); });
+
