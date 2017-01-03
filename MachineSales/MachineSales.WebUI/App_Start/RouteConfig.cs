@@ -15,6 +15,7 @@ namespace MachineSales.WebUI
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             routes.MapMvcAttributeRoutes();
 =======
 >>>>>>> 3bc9d2f66f8f3fee64c703b21da8ca4e70142f78
@@ -22,6 +23,8 @@ namespace MachineSales.WebUI
             routes.MapMvcAttributeRoutes();
 
 >>>>>>> parent of 60e25ae... merge needed
+=======
+>>>>>>> 7b9e4261c4aa7001341f0c3210ff6e7bec417fff
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
