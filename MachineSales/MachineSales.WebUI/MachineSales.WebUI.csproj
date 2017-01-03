@@ -236,7 +236,10 @@
     <Content Include="Scripts\pages\config\routeConfig.js" />
     <Content Include="Scripts\pages\content\content.controller.js" />
     <Content Include="Scripts\pages\machineSales.module.js" />
+    <Content Include="Scripts\slick-init.js" />
+    <Content Include="Scripts\slick-lightbox.min.js" />
     <Content Include="Scripts\slick.min.js" />
+    <Content Include="Scripts\slider.js" />
     <Content Include="Scripts\tractor.js" />
     <Content Include="tractor1.png" />
     <Content Include="Web.config">
