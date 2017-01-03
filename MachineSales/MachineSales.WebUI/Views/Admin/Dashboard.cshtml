@@ -11,43 +11,46 @@
     <script src="~/Scripts/pages/config/routeConfig.js"></script>
     <script src="~/Scripts/pages/admin/adminAjax.service.js"></script>
     <script src="~/Scripts/libs/angular-thumb.js"></script>
+    <script src="~/Scripts/pages/admin/modal/confirmModal/confirmController.js"></script>
     <script src="~/Scripts/pages/admin/admin.controller.js"></script>
 }
-<div class="text-center row">
-    <h2>Техніка на продаж</h2>
-    <div class="col-md-4">
-        <table class="table table-bordered table-hover" id="machinesTable">
-            <thead class="container">
-            <tr class="row">
-                <th class="col-md-8">Фото</th>
-                <th class="col-md-4">Модель</th>
-            </tr>
-            </thead>
-            <tbody class="container">
-            <tr id="addRow" class="text-center" onclick="location.assign('#addmachine');">
-                <td colspan="3">
-                    <span class="glyphicon glyphicon-plus">Додати машину</span>
-                </td>
-            </tr>
-            @foreach (var machine in Model)
-            {
-                <tr class="row" id="dataRow" onclick="location.assign('#machines/' + '@machine.Id');">
-                    <td class="col-md-8"><img src="@machine.MainImage"/></td>
-                    <td class="col-md-4"><a href="#machines/@machine.Id">@machine.Model</a></td>
-                </tr>
-            }
-            </tbody>
-        </table>
-        <div class="text-center">
-            <ul class="pagination pagination-sm">
-                @for (var i = 0; i < ViewBag.allPages; i++)
-                {
-                    <li><a href="@Url.Action("Dashboard", "Admin", new { page = i + 1})">@(i + 1)</a></li>
-                }
-            </ul>
+<div class="container" id="mainDashboard">
+    <div class="text-center row">
+        <h2>Техніка на продаж</h2>
+        <div class="col-md-4">
+            <table class="table table-bordered table-hover" id="machinesTable">
+                <thead class="container">
+                    <tr class="row">
+                        <th class="col-md-8">Фото</th>
+                        <th class="col-md-4">Модель</th>
+                    </tr>
+                </thead>
+                <tbody class="container">
+                    <tr id="addRow" class="text-center" onclick="location.assign('#addmachine');">
+                        <td colspan="3">
+                            <span class="glyphicon glyphicon-plus">Додати машину</span>
+                        </td>
+                    </tr>
+                    @foreach (var machine in Model)
+                    {
+                        <tr class="row" id="dataRow" onclick="location.assign('#machines/' + '@machine.Id');">
+                            <td class="col-md-8"><img src="@machine.MainImage" /></td>
+                            <td class="col-md-4"><a href="#machines/@machine.Id">@machine.Model</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="text-center">
+                <ul class="pagination pagination-sm">
+                    @for (var i = 0; i < ViewBag.allPages; i++)
+                    {
+                        <li><a href="@Url.Action("Dashboard", "Admin", new { page = i + 1})">@(i + 1)</a></li>
+                    }
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="col-md-8">
-        <ng-view></ng-view>
+        <div class="col-md-8">
+            <ng-view></ng-view>
+        </div>
     </div>
 </div>
