@@ -3,9 +3,9 @@
         .module("machineSalesModule")
         .controller("adminController", adminController);
 
-    adminController.$inject = ["$scope", "$routeParams", "FileUploader", "adminAjaxService", "mode"];
+    adminController.$inject = ["$scope", "$routeParams", "FileUploader", "adminAjaxService", "mode", "$uibModal"];
 
-    function adminController($scope, $routeParams, FileUploader, adminAjaxService, mode) {
+    function adminController($scope, $routeParams, FileUploader, adminAjaxService, mode, $uibModal) {
         $scope.mode = mode;
 
         $scope.machineId = $routeParams.id || null;
@@ -56,50 +56,48 @@
         }
 
         $scope.updateMachine = function (machine) {
-            var isUpdate = confirm("Ви дійсно хочете змінити дану машину?");
-            if (isUpdate) {
+            //var isUpdate = confirm("Ви дійсно хочете змінити дану машину?");
+            
+            openConfirm("updateMode").result.then(function () {
                 adminAjaxService.updateMachine(machine)
-                .then(function (response) {
-                    if ($scope.mainPhotoUploader.queue.length === 0 && $scope.photosUploader.queue.length === 0) {
-                        location.assign("/Admin/Dashboard");
-                    } else {
-                        $scope.mainPhotoUploader.uploadAll();
-                        $scope.photosUploader.uploadAll();
-                    }
-                }, function (error) {
-                    console.error("error updating machine");
-                });
-            }
-
+               .then(function (response) {
+                   if ($scope.mainPhotoUploader.queue.length === 0 && $scope.photosUploader.queue.length === 0) {
+                       location.assign("/Admin/Dashboard");
+                   } else {
+                       $scope.mainPhotoUploader.uploadAll();
+                       $scope.photosUploader.uploadAll();
+                   }
+               }, function (error) {
+                   console.error("error updating machine");
+               });
+            }, function () { });
         }
 
         $scope.deleteMainImage = function (id) {
-            var isDeletingMain = confirm("Ви дійсно хочете видалити основне фото?");
-            if (isDeletingMain) {
+            openConfirm("deletePhotoMode").result.then(function () {
                 adminAjaxService.deleteMainImage(id)
                     .then(function (response) {
                         location.assign("/Admin/Dashboard");
                     }, function (error) {
                         console.error("error deleting main photo");
                     });
-            }
+            }, function () {
+            }); 
         }
 
         $scope.deleteSecondaryImage = function (id) {
-            var isDeletingSecondary = confirm("Ви дійсно хочете видалити це фото?");
-            if (isDeletingSecondary) {
+            openConfirm("deletePhotoMode").result.then(function () {
                 adminAjaxService.deleteSecondaryImage(id)
                     .then(function (response) {
                         location.assign("/Admin/Dashboard");
                     }, function (error) {
                         console.error("error deleting main photo");
                     });
-            }
+            }, function () { });
         }
 
         $scope.createMachine = function (machine) {
-            var isCreating = confirm("Ви дійсно хочете створити нову машину?");
-            if (isCreating) {
+            openConfirm("createMode").result.then(function () {
                 adminAjaxService.createMachine(machine)
                     .then(function (response) {
                         if ($scope.mainPhotoUploader.queue.length === 0 && $scope.photosUploader.queue.length === 0) {
@@ -111,23 +109,40 @@
                             $scope.mainPhotoUploader.uploadAll();
                             $scope.photosUploader.uploadAll();
                         }
-
                     }, function (error) {
                         console.error("error creating machine");
                     });
-            }
+            }, function () { });
+                
         }
 
         $scope.deleteMachine = function (machineId) {
-            var isDeleting = confirm("Ви дійсно хочете видалити цю машину?");
-            if (isDeleting) {
+            openConfirm("deleteMode").result.then(function () {
                 adminAjaxService.deleteMachine(machineId)
                     .then(function (response) {
                         location.assign("/Admin/Dashboard");
                     }, function (error) {
                         console.error("error deleting machine");
                     });
-            }
+            }, function () { });
+                
+        }
+
+        function openConfirm(mode) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: "/Scripts/pages/admin/modal/confirmModal/confirmModal.html",
+                controller: "confirmController",
+                controllerAs: "cdCtrl",
+                size: "sm",
+                resolve: {
+                    mode: function () {
+                        return mode;
+                    }
+                }
+            });
+
+            return modalInstance;
         }
 
         activate();

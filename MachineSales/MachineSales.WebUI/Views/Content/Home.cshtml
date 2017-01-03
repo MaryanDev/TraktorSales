@@ -23,10 +23,9 @@
         </div>
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
-                <img class="img-responsive" src="Images/tractor1.png" alt="tractors">
+                <img class="img-responsive" src="Content/Images/tractor1.png" alt="tractors">
                 <p>Наша фірма понад 15 років    на ринку займається поставкою спецтехніки  і запчастин з Європи та Англії. Ми привозимо, розмитнюємо та надаємо в оренду техніку різного призначення . В нас є мініекскаватори, телескопічні навантажувачі, екскаватори- навантажувачі, повноповоротні екскпватори, самоскиди, катки та багато іншої техніки.Ми також гарантуємо за технічний стан та якість нашої техніки.Наші фахівці прокнсультують та допоможуть зробити правильний вибір щодо призначення техніки до відповідності чи складності об'єкту.Запрошуємо до співпраці!!!</p>
             </div>
-
         </div>
     </div>
 </header>
@@ -43,14 +42,26 @@
         <div class="row">
             <div class="col-sm-12">
                 <div id="map"></div>
-
+                <script>
+                          function initMap() {
+                            var uluru = {lat: -25.363, lng: 131.044};
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                              zoom: 4,
+                              center: uluru,
+                              scrollwheel:  false
+                            });
+                            var marker = new google.maps.Marker({
+                              position: uluru,
+                              map: map
+                            });
+                          }
+                </script>
             </div>
         </div>
     </div>
 </section>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXHTf3uy7g7hehKds_IHhT4szn4N-hFBk&callback=initMap"></script>
-<script src="~/Scripts/pages/content/map.js"></script>
+
 <!-- Contact Section -->
 <!--     <section id="contact">
         <div class="container">

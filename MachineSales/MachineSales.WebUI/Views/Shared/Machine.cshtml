@@ -1,44 +1,49 @@
-﻿<a href="/Content/MachineDetails/@Model.Id" class="machine-item-link deny">
-    <div class="item">
-        <div class="thumbnail hover-shadow">
-
-            <div class="model-bar">
-                <div class="model" calss="item-text">@Model.Model</div>
+﻿@model MachineSales.WebUI.Entities.Machine
+<a href="@Url.Action("MachineDetails", "Content", new { id = Model.Id })" class="machine-item-link">
+    <div class="machines-wrapper">
+        <div class="machine-item">
+            <div style="background-image: url('@Model.MainImage')" class="machine-image">
+                <div class="machine-cost">$@string.Format("{0:0.#####}", Model.Price)</div>
+                <div class="machine-gradient"></div>
             </div>
 
-            @*<div class="img-container" style="background-image: url('@Url.Content(Model.MainImage)')">
-                </div>*@
-            <div class="image-container">
-                <img class="tractor-img" src="@Model.MainImage" alt="@Model.Model" />
-            </div>
+            <div class="machine-body">
+                <div class="machine-name">@Model.Model</div>
+                @*<div class="machine-about">@Model.Description</div>*@
 
-            <div class="caption">
-   
-                <p class="item-text">
-                    @Model.Description
-                    <b>Потужність мотору:</b>20кВт
-                </p>
-                <p class="item-text">
-                    @Model.Description
-                    <b>Максимальна швидкість:</b>100км/
-                </p>
-                <p class="item-text">
-                    @Model.Description
-                    <b>Крутящий момент:</b>20к
-                </p>
+                @*<div class="img-container" style="background-image: url('@Url.Content(Model.MainImage)')">
+                    </div>*@
+                <div class="image-container">
+                    <img class="tractor-img" src="@Model.MainImage" alt="@Model.Model" />
+                </div>
 
-                <div class="row">
-                    <div class="col-xs-12 col-md-6">
-                        <p class="lead">
+                <div class="caption">
 
-                        </p>
-                    </div>
-                    <div class="col-xs-12 col-md-6">
-                        <a class="btn btn-success" href="">@Model.Price грн</a>
+                    <p class="item-text">
+                        @Model.Description
+                        <b>Потужність мотору:</b>20кВт
+                    </p>
+                    <p class="item-text">
+                        @Model.Description
+                        <b>Максимальна швидкість:</b>100км/
+                    </p>
+                    <p class="item-text">
+                        @Model.Description
+                        <b>Крутящий момент:</b>20к
+                    </p>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <p class="lead">
+
+                            </p>
+                        </div>
+                        <div class="col-md-offset-2 col-xs-4 col-md-4">
+                            <a class="btn btn-success" href="">@Model.Price грн</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </a>
-
