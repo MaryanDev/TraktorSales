@@ -9,10 +9,12 @@ using System.Web.Mvc;
 
 namespace MachineSales.WebUI.Controllers
 {
-    public class ContentController : BaseController
+    public class ContentController : Controller
     {
-        public ContentController() : base()
+        private EFRepository _repository;
+        public ContentController()
         {
+            _repository = new EFRepository();
         }
         // GET: Content
         public ActionResult Home()
@@ -48,6 +50,13 @@ namespace MachineSales.WebUI.Controllers
             }).FirstOrDefault();
 
             return View(machineInfo);
+        }
+        protected int pageSize = 5;
+        protected int GetCountOfPages(int allPages, int size)
+        {
+            var pages = allPages / size;
+            var count = allPages % size == 0 ? pages : ++pages;
+            return count;
         }
     }
 }
