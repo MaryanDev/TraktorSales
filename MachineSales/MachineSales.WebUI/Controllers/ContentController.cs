@@ -13,12 +13,15 @@ namespace MachineSales.WebUI.Controllers
     {
         public ContentController() : base()
         {
+            this.pageSize = 6;
         }
         // GET: Content
         public ActionResult Home()
         {
-            return View();
+            return View();  
         }
+
+        protected override int pageSize { get; set; }
 
         public ActionResult Sales(int page = 1)
         {
@@ -26,8 +29,12 @@ namespace MachineSales.WebUI.Controllers
             {
                 Id = m.Id,
                 MainImage = m.MainImage,
-                Model = m.Model
-            }).ToList();
+                Model = m.Model,
+                Price = m.Price
+            })
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
 
             var count = GetCountOfPages(_repository.Get<Machine>().Count, pageSize);
             ViewBag.allPages = count;

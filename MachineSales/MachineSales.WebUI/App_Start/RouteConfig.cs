@@ -13,18 +13,12 @@ namespace MachineSales.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-
+            routes.MapMvcAttributeRoutes();
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Content", action = "Home", id = UrlParameter.Optional }
             );
-
-            //routes.MapRoute(
-            //    name: "Admin",
-            //    url: "admin/",
-            //    defaults: new { controller = "Admin", action = "Dashboard" }
-            //);
         }
     }
 }

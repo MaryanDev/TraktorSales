@@ -12,9 +12,7 @@ using System.Web.Mvc;
 namespace MachineSales.WebUI.Controllers
 {
     [Authorize]
-
-
- 
+    [RoutePrefix("admin")]
     [Route("{action=Dashboard}")]
     public class AdminController : BaseController
     {
