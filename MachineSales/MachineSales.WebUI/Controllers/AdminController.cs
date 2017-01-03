@@ -12,7 +12,11 @@ using System.Web.Mvc;
 namespace MachineSales.WebUI.Controllers
 {
     [Authorize]
+<<<<<<< HEAD
     public class AdminController : Controller
+=======
+    public class AdminController : BaseController
+>>>>>>> parent of bbc3193... optimized routing
     {
         private EFRepository _repository;
         public AdminController()
