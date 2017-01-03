@@ -3,7 +3,11 @@
     ViewBag.Title = "Sales";
 }
 
+<<<<<<< HEAD
 @*<h2>Sales</h2>
+=======
+<h2>Sales</h2>
+>>>>>>> deaa69b95158ee42f5acf17b70041dce17c804a3
 
 @foreach (var machine in @Model)
 {
@@ -19,7 +23,11 @@
             <li><a href="@Url.Action("Sales", "Content", new { page = i + 1})">@(i + 1)</a></li>
         }
     </ul>
+<<<<<<< HEAD
 </div>*@
+=======
+</div>
+>>>>>>> deaa69b95158ee42f5acf17b70041dce17c804a3
 
 <section id="sales">
     <div class="container">
@@ -39,7 +47,11 @@
             <div class="row list-group">
 
                 @foreach (var machine in @Model)
+<<<<<<< HEAD
                 {
+=======
+            {
+>>>>>>> deaa69b95158ee42f5acf17b70041dce17c804a3
                     <div class="col-xs-10 col-sm-10 col-md-4 col-lg-4">
                         @Html.Partial("Machine", machine)
                     </div>

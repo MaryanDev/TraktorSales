@@ -1,0 +1,86 @@
+diff a/MachineSales/MachineSales.WebUI/Views/Content/MachineDetails.cshtml b/MachineSales/MachineSales.WebUI/Views/Content/MachineDetails.cshtml	(rejected hunks)
+@@ -2,9 +2,79 @@
+ @{
+     ViewBag.Title = "MachineDetails";
+ }
++<link href="~/Content/slick.css" rel="stylesheet" />
++<link href="~/Content/slick-theme.css" rel="stylesheet" />
++<link href="~/Content/slick-lightbox.css" rel="stylesheet" />
+ 
+-<div class="container">
+-    <div class="row">
++<section id="sales">
++    <div class="wrapper">
++        <div class="container">
++            <div class="row">
++                <div class="col-md-5">
+ 
++
++
++                    <div class="slider-for row slider-for-container" id="slid">
++                        @{
++                            var images = Model.Images;
++
++                            for (int i = 0; i < images.Count; i++)
++                            {
++                                <div class="column col-md-12">
++                                    <img src="@images[i].ImagePath" onclick="openModal();currentSlide(@i+1)" class="hover-shadow" />
++                                </div>
++
++                            }
++                        }
++                    </div>
++
++
++                    <div class="slider-nav">
++                        @{
++                            for (int i = 0; i < images.Count; i++)
++                            {
++                                <img src="@images[i].ImagePath" class="hover-shadow" />
++                            }
++                        }
++                    </div>
++
++                    <div id="myModal" class="modal">
++                        <span class="close cursor" onclick="closeModal()">&times;</span>
++                        <div class="modal-content">
++
++                            @{
++                                for (int i = 0; i < images.Count; i++)
++                                {
++                                    <div class="mySlides">
++                                        <div class="numbertext">@i+1</div>
++
++
++                                        <img src="@images[i].ImagePath" style="width:100%" />
++
++
++                                    </div>
++
++                                }
++                            }
++
++                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
++                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
++                        </div>
++                    </div>
++
++                </div>
++                <div class="col-md-7">
++                    <div class="model model-details" calss="item-text">@Model.Model</div>
++                    <div>@Model.Description</div>
++
++
++                </div>
++
++
++            </div>
++        </div>
++
++        <script type="text/javascript" src="~/Scripts/slick.min.js"></script>
++        <script type="text/javascript" src="~/Scripts/slider.js"></script>
+     </div>
+-</div>
+\ No newline at end of file
++</section>
+\ No newline at end of file

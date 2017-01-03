@@ -9,9 +9,8 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/styles.css" rel="stylesheet" type="text/css" />
     @RenderSection("HeadStyles", false)
-    <script src="~/Scripts/jquery-3.1.1.min.js"></script
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Scripts/libs/angular.min.js"></script>\z
+    <script src="~/Scripts/libs/angular.min.js"></script>
     <script src="~/Scripts/libs/angular-route.min.js"></script>
     <script src="~/Scripts/libs/ui-bootstrap-tpls.min.js"></script>
     <script src="~/Scripts/libs/angular.file-upload.js"></script>
@@ -37,20 +36,25 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <div class="logo-region">
+                <div id="logo">
                     <a class="navbar-brand logo logo-main" href="/">SBB </a>
-                    <a class="logo logo-sublogo" href="#page-top">SPECBUDBOGDAN</a>
+                    <a class="logo" href="#page-top">SPECBUDBOGDAN</a>
                 </div>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li> @Html.ActionLink("Вийти", "Logout", "Account") </li>
+                        <li> @Html.ActionLink("Змінити пароль", "ChangePassword", "Account") </li>
+                        <li> @Html.ActionLink("Адмін-панель", "Dashboard", "Admin") </li>
+                    }
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/Content/Sales">Купити спецтехніку</a>
+                        <a href="@Url.Action("Sales", "Content")">Купити спецтехніку</a>
                     </li>
                     <li class="page-scroll">
                         <a class="glyphicon glyphicon-earphone"></a>
@@ -126,17 +130,19 @@
         </a>
     </div>
 
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXHTf3uy7g7hehKds_IHhT4szn4N-hFBk&callback=initMap"></script>
     <!-- jQuery -->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <!-- Bootstrap -->
     <script src="~/Scripts/bootstrap.min.js"></script>
 
-
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <!-- Theme JavaScript -->
     <script src="~/Scripts/tractor.js"></script>
+    <script type="text/javascript" src="~/Scripts/slick.min.js"></script>
 
 
 </body>
