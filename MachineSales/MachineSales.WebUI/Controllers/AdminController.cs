@@ -12,18 +12,17 @@ using System.Web.Mvc;
 namespace MachineSales.WebUI.Controllers
 {
     [Authorize]
-<<<<<<< HEAD
-    public class AdminController : Controller
-=======
+
+
+ 
+    [Route("{action=Dashboard}")]
     public class AdminController : BaseController
->>>>>>> parent of bbc3193... optimized routing
     {
-        private EFRepository _repository;
-        public AdminController()
+        public AdminController() : base()
         {
-            _repository = new EFRepository();
         }
         // GET: Admin
+        
         public ActionResult Dashboard(int page = 1)
         {
             var machines = _repository.Get<Machine>()
@@ -164,14 +163,6 @@ namespace MachineSales.WebUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-        }
-
-        protected int pageSize = 5;
-        protected int GetCountOfPages(int allPages, int size)
-        {
-            var pages = allPages / size;
-            var count = allPages % size == 0 ? pages : ++pages;
-            return count;
         }
 
         private void DeleteImage(string path)
