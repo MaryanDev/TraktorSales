@@ -11,6 +11,12 @@
                 <div class="model-bar">
                     <div class="model" calss="item-text">@Model.Model</div>
                 </div>
+                @{ 
+                    if (string.IsNullOrEmpty(Model.MainImage.ToString()))
+                    {
+                        Model.MainImage = "/Content/NoImage/noImage.png";
+                    }
+                }
                 <img class="tractor-img" src="@Model.MainImage" alt="@Model.Model" />
             </div>
 

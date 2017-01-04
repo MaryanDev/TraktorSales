@@ -156,6 +156,7 @@
     <Content Include="Content\Images\2.4.jfif" />
     <Content Include="Content\Images\2.5.jfif" />
     <Content Include="Content\Images\tractor1.png" />
+    <Content Include="Content\NoImage\noImage.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\slick-theme.css" />
     <Content Include="Content\slick.css" />
