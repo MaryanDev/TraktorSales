@@ -1,14 +1,16 @@
 ﻿<a href="/Content/MachineDetails/@Model.Id" class="machine-item-link deny">
     <div class="item">
+
         <div class="thumbnail hover-shadow">
 
-            <div class="model-bar">
-                <div class="model" calss="item-text">@Model.Model</div>
-            </div>
+
 
             @*<div class="img-container" style="background-image: url('@Url.Content(Model.MainImage)')">
                 </div>*@
             <div class="image-container">
+                <div class="model-bar">
+                    <div class="model" calss="item-text">@Model.Model</div>
+                </div>
                 <img class="tractor-img" src="@Model.MainImage" alt="@Model.Model" />
             </div>
 

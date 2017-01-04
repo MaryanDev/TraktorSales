@@ -498,6 +498,7 @@ footer {
 
 .image-container {
     height: 270px;
+    position: relative;
 }
 
 .lg-image {
@@ -749,7 +750,8 @@ a, a:hover, a:active .deny {
 }
 
 .model-bar {
-    width:89.3%;
+    /*width:89.3%;*/
+    width:100%;
     position: absolute;
     top: 1%;
     transform: translateY(-50%);
@@ -799,3 +801,4 @@ a, a:hover, a:active .deny {
     padding:10px;
 
 }
+
