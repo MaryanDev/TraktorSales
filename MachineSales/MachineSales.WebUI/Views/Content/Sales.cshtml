@@ -32,9 +32,11 @@
         {
             <div class="text-center">
                 <ul class="pagination pagination-sm">
+                    @{ string classSelected = "";}
                     @for (var i = 0; i < ViewBag.allPages; i++)
                     {
-                        <li><a href="@Url.Action("Sales", "Content", new { page = i + 1})">@(i + 1)</a></li>
+                        classSelected = i + 1 == ViewBag.CurrentPage ? "background-color: lightgray" : "";
+                        <li><a style="@classSelected" href="@Url.Action("Sales", "Content", new { page = i + 1})">@(i + 1)</a></li>
                     }
                 </ul>
             </div>

@@ -38,6 +38,7 @@ namespace MachineSales.WebUI.Controllers
 
             var count = GetCountOfPages(_repository.Get<Machine>().Count, pageSize);
             ViewBag.allPages = count;
+            ViewBag.CurrentPage = page;
 
             return View(machines);
         }
