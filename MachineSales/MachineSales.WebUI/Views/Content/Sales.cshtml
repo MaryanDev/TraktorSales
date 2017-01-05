@@ -17,15 +17,21 @@
             </div>*@
 
         <div class="row">
-            <div class="row list-group">
-
-                @foreach (var machine in @Model)
-                {
-                    <div class="col-xs-10 col-sm-10 col-md-4 col-lg-4">
-                        @Html.Partial("Machine", machine)
-                    </div>
-                }
-            </div>
+            @if(Model.Count == 0 || Model == null)
+            {
+                <h1>На даний момент техніка на продаж відсутня</h1>
+            }
+            else
+            {
+                <div class="row list-group">
+                    @foreach (var machine in @Model)
+                    {
+                        <div class="col-xs-10 col-sm-10 col-md-4 col-lg-4">
+                            @Html.Partial("Machine", machine)
+                        </div>
+                    }
+                </div>
+            }
         </div>
 
         @if (ViewBag.allPages > 1)
