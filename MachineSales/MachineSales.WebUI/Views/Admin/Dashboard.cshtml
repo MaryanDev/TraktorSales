@@ -5,19 +5,23 @@
 
 @section HeadStyles{
     <link href="~/Content/dashboard.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://textangular.com/dist/textAngular.css" type="text/css">
 }
 
 @section HeadScripts{
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular-rangy.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular-sanitize.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular.min.js'></script>
     <script src="~/Scripts/pages/config/routeConfig.js"></script>
     <script src="~/Scripts/pages/admin/adminAjax.service.js"></script>
     <script src="~/Scripts/libs/angular-thumb.js"></script>
     <script src="~/Scripts/pages/admin/modal/confirmModal/confirmController.js"></script>
     <script src="~/Scripts/pages/admin/admin.controller.js"></script>
 }
-<div class="container" id="mainDashboard">
+<div class="container-fluid" id="mainDashboard">
     <div class="text-center row">
         <h2>Техніка на продаж</h2>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <table class="table table-bordered table-hover" id="machinesTable">
                 <thead class="container">
                     <tr class="row">
@@ -49,7 +53,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
             <ng-view></ng-view>
         </div>
     </div>

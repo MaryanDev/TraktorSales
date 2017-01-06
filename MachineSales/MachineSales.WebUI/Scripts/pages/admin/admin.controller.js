@@ -3,9 +3,10 @@
         .module("machineSalesModule")
         .controller("adminController", adminController);
 
-    adminController.$inject = ["$scope", "$routeParams", "FileUploader", "adminAjaxService", "mode", "$uibModal"];
+    adminController.$inject = ["$scope", "$routeParams", "FileUploader", "adminAjaxService", "mode", "$uibModal", "textAngularManager", "taOptions"];
 
-    function adminController($scope, $routeParams, FileUploader, adminAjaxService, mode, $uibModal) {
+    function adminController($scope, $routeParams, FileUploader, adminAjaxService, mode, $uibModal, textAngularManager, taOptions) {
+        console.log(taOptions);
         $scope.mode = mode;
 
         $scope.machineId = $routeParams.id || null;
@@ -18,6 +19,12 @@
         $scope.photosUploader.url = "/Admin/ModifyImages";
 
         function activate() {
+            taOptions.toolbar = [
+                ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'],
+                ['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'clear'],
+                ['justifyLeft', 'justifyCenter', 'justifyRight'],
+                ['insertImage', 'insertLink']
+            ];
             if ($scope.machineId !== null) {
                 adminAjaxService.getMachineDetails($scope.machineId)
                     .then(function (response) {
@@ -57,7 +64,7 @@
 
         $scope.updateMachine = function (machine) {
             //var isUpdate = confirm("Ви дійсно хочете змінити дану машину?");
-            
+
             openConfirm("updateMode").result.then(function () {
                 adminAjaxService.updateMachine(machine)
                .then(function (response) {
@@ -82,7 +89,7 @@
                         console.error("error deleting main photo");
                     });
             }, function () {
-            }); 
+            });
         }
 
         $scope.deleteSecondaryImage = function (id) {
@@ -113,7 +120,7 @@
                         console.error("error creating machine");
                     });
             }, function () { });
-                
+
         }
 
         $scope.deleteMachine = function (machineId) {
@@ -125,7 +132,7 @@
                         console.error("error deleting machine");
                     });
             }, function () { });
-                
+
         }
 
         function openConfirm(mode) {
