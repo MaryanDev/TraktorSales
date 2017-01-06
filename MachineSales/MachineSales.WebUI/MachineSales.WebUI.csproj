@@ -231,6 +231,9 @@
     <Content Include="Scripts\libs\angular-thumb.js" />
     <Content Include="Scripts\libs\angular.file-upload.js" />
     <Content Include="Scripts\libs\angular.min.js" />
+    <Content Include="Scripts\libs\textAngular-rangy.min.js" />
+    <Content Include="Scripts\libs\textAngular-sanitize.min.js" />
+    <Content Include="Scripts\libs\textAngular.min.js" />
     <Content Include="Scripts\libs\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\libs\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\libs\ui-bootstrap.js" />
