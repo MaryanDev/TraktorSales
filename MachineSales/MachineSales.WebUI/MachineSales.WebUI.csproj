@@ -139,12 +139,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ajax-loader.gif" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dashboard.css" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
     <Content Include="Content\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\slick.svg" />
     <Content Include="Content\Images\1.1.jfif" />
     <Content Include="Content\Images\1.2.jfif" />
     <Content Include="Content\Images\1.3.jfif" />
@@ -158,6 +162,7 @@
     <Content Include="Content\Images\tractor1.png" />
     <Content Include="Content\NoImage\noImage.png" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\slick-lightbox.css" />
     <Content Include="Content\slick-theme.css" />
     <Content Include="Content\slick.css" />
     <Content Include="Content\styles.css" />
@@ -209,6 +214,13 @@
     <Content Include="Content\font-awesome\scss\_screen-reader.scss" />
     <Content Include="Content\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\font-awesome\scss\_variables.scss" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\fonts\slick.eot" />
+    <Content Include="Content\fonts\slick.ttf" />
+    <Content Include="Content\fonts\slick.woff" />
     <None Include="Properties\PublishProfiles\rammayher.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -246,6 +258,7 @@
     <Content Include="Scripts\pages\admin\templates\machineDetails.html" />
     <Content Include="Scripts\pages\config\routeConfig.js" />
     <Content Include="Scripts\pages\content\content.controller.js" />
+    <Content Include="Scripts\pages\content\map.js" />
     <Content Include="Scripts\pages\machineSales.module.js" />
     <Content Include="Scripts\slick-init.js" />
     <Content Include="Scripts\slick-lightbox.min.js" />

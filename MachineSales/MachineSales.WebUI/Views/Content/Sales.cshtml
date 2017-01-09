@@ -31,11 +31,10 @@
                     @for (var i = 0; i < ViewBag.allPages; i++)
                     {
                         classSelected = i + 1 == ViewBag.CurrentPage ? "background-color: lightgray" : "";
-                        <li><a style="@classSelected" href="@Url.Action("Sales", "Content", new { page = i + 1})">@(i + 1)</a></li>
+                        <li><a style="@classSelected" href="@Url.Action("Sales", "Content", new {page = i + 1})">>@(i + 1)</a></li>
                     }
                 </ul>
             </div>
-                        }
-
+        }
     </div>
 </section>

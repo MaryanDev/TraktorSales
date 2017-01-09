@@ -20,7 +20,7 @@ namespace MachineSales.WebUI.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Підтвердження нового пароля")]
+        [Display(Name = "Підтвердження")]
         [Compare("NewPassword", ErrorMessage ="Паролі мають співпадати")]
         public string ConfirmNewPassword { get; set; }
     }

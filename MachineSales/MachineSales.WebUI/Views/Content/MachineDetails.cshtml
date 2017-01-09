@@ -16,10 +16,9 @@
 
                         for (int i = 0; i < images.Count; i++)
                         {
-                            <div class="col-md-12 slider-img-container">
+                            <div class="col-md-12 slider-img-container" style="cursor: pointer">
                                 <img src="@images[i].ImagePath" onclick="openModal();currentSlide(@i+1)" class="slider-img hover-shadow" />
                             </div>
-
                         }
                     }
                 </div>
@@ -36,18 +35,13 @@
                 <div id="myModal" class="modal">
                     <span class="close cursor" onclick="closeModal()">&times;</span>
                     <div class="modal-content">
-
                         @{
                             for (int i = 0; i < images.Count; i++)
                             {
                                 <div class="mySlides">
                                     <div class="numbertext">@i+1</div>
-
-
                                     <img src="@images[i].ImagePath" style="width:100%" />
-
                                 </div>
-
                             }
                         }
 

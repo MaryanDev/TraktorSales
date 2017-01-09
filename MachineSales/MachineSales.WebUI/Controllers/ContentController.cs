@@ -54,7 +54,7 @@ namespace MachineSales.WebUI.Controllers
                 MainImage = m.MainImage,
                 Images = m.Images.Select(i => new Image { Id = i.Id, ImagePath = i.ImagePath }).ToList()
             }).FirstOrDefault();
-
+            machineInfo.Images.Add(new Image { ImagePath = _repository.GetSingle<Machine>(m => m.Id == id).MainImage});
             return View(machineInfo);
         }
     }
