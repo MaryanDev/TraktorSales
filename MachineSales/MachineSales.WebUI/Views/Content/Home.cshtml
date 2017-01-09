@@ -43,59 +43,23 @@
             <div class="col-sm-12">
                 <div id="map"></div>
                 <script>
-                          function initMap() {
-                            var uluru = {lat: -25.363, lng: 131.044};
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                              zoom: 10,
-                              center: uluru,
-                              scrollwheel:  false
-                            });
-                            var marker = new google.maps.Marker({
-                              position: uluru,
-                              map: map
-                            });
-                          }
+                    function initMap() {
+                        var uluru = { lat: -25.363, lng: 131.044 };
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 5,
+                            center: uluru,
+                            scrollwheel: false
+                        });
+                        var marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map
+                        });
+                    }
                 </script>
             </div>
         </div>
     </div>
 </section>
 
-
-<!-- Contact Section -->
-<!--     <section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Зв'яжіться з нами</h2>
-                    <hr class="star-primary">
-                        <div>067 679 44 54</div>
-                        <div>096 622 22 92</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-
-                </div>
-            </div>
-        </div>
-    </section>
- -->
-<!--    <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="intro-text">
-                <hr class="star-light">
-            </div>
-        </div>
-    </div>
-       <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
-                    <h2>Зв'яжіться з нами</h2>
-                    <div>067 679 44 54</div>
-                    <div>096 622 22 92</div>
-        </div>
-
-    </div>
-</div> -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXHTf3uy7g7hehKds_IHhT4szn4N-hFBk&callback=initMap"></script>
 

@@ -17,9 +17,6 @@
     <script src="~/Scripts/pages/machineSales.module.js"></script>
     @RenderSection("HeadScripts", false)
 
-    <link rel="stylesheet" type="text/css" href="~/Content/slick.css" />
-    <!--     Add the new slick-theme.css if you want the default styling-->
-    <link rel="stylesheet" type="text/css" href="~/Content/slick-theme.css" />
     <!-- Custom Fonts -->
     <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -38,7 +35,7 @@
                 </button>
                 <div id="logo">
                     <a class="navbar-brand logo logo-main" href="/">SBB </a>
-                    <a class="logo" href="#page-top">SPECBUDBOGDAN</a>
+                    <a class="logo logo-sublogo" href="#page-top">SPECBUDBOGDAN</a>
                 </div>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,17 +53,21 @@
                     <li class="page-scroll">
                         <a href="@Url.Action("Sales", "Content")">Купити спецтехніку</a>
                     </li>
-                    <li class="page-scroll">
-                        <a class="glyphicon glyphicon-earphone"></a>
-                    </li>
-                    <li class="page-scroll phone">
-                        <a>067 679 44 54</a>
-                        <a>096 622 22 92</a>
-                    </li>
+                    @if (!Request.IsAuthenticated)
+                    {
+
+                        <li class="page-scroll">
+                            <p class="glyphicon glyphicon-earphone phone-text"></p>
+                        </li>
+                        <li class="page-scroll phone">
+                            <p class="phone-text">067 679 44 54</p>
+                            <p class="phone-text">096 622 22 92</p>
+                        </li>
+                    }
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.navbar-collapse -->
         <!-- /.container-fluid -->
     </nav>
 
@@ -91,22 +92,13 @@
                             </p>
                         </div>
                         <div class="footer-col col-md-4">
-                            <h3>Ми в соціальних мережах</h3>
+                            <h3>Ми на Autoline та в соціальних мережах</h3>
                             <ul class="list-inline">
                                 <li>
+                                    <a href="http://autoline.ua/specbudbogdan/" class="btn-social btn-outline"><i class="fa fa-fw fa-adn"></i></a>
+                                </li>
+                                <li>
                                     <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -122,7 +114,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            Copyright &copy; Your Website @DateTime.Now.Year
+                            Copyright &copy; SPECBUDBOGDAN @DateTime.Now.Year
                         </div>
                     </div>
                 </div>
@@ -138,7 +130,6 @@
     </div>
 
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXHTf3uy7g7hehKds_IHhT4szn4N-hFBk&callback=initMap"></script>
     <!-- jQuery -->
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <!-- Bootstrap -->
@@ -149,8 +140,6 @@
 
     <!-- Theme JavaScript -->
     <script src="~/Scripts/tractor.js"></script>
-    <script type="text/javascript" src="~/Scripts/slick.min.js"></script>
-
 
 </body>
 

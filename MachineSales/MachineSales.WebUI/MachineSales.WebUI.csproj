@@ -252,7 +252,6 @@
     <Content Include="Scripts\slick.min.js" />
     <Content Include="Scripts\slider.js" />
     <Content Include="Scripts\tractor.js" />
-    <Content Include="tractor1.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

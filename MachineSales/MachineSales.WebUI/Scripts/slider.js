@@ -17,18 +17,8 @@
         focusOnSelect: true
     });
 
-//    $(document).on('click', '[data-toggle="lightbox"]', function (event) {
-//        event.preventDefault();
-//        $(this).ekkoLightbox();
-//    });
-
 })(jQuery); // End of use strict
 
-//$('#slid').slickLightbox({
-//    caption: 'caption',
-//    useHistoryApi: true,
-//    //closeOnBackdropClick: true
-//});
 
 function openModal() {
     document.getElementById('myModal').style.display = "block";
@@ -66,6 +56,4 @@ function showSlides(n) {
         dots[i].className = dots[i].className.replace(" active", "");
     }
     slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-    captionText.innerHTML = dots[slideIndex - 1].alt;
 }
